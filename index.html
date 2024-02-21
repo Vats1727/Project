@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Information</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .add-btn {
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<table id="student-table">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>ER No.</th>
+            <th>City</th>
+            <th>Branch</th>
+            <th>Division</th>
+            <th>Semester</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="student_name[]" /></td>
+            <td><input type="text" name="er_no[]" /></td>
+            <td><input type="text" name="city[]" /></td>
+            <td><input type="text" name="branch[]" /></td>
+            <td><input type="text" name="division[]" /></td>
+            <td><input type="text" name="semester[]" /></td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="add-btn" onclick="addRow()">Add Row</button>
+
+<script>
+function addRow() {
+    var table = document.getElementById("student-table").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.rows.length);
+    var cells = [];
+
+    for (var i = 0; i < 6; i++) {
+        cells[i] = newRow.insertCell(i);
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "student_data[]";
+        cells[i].appendChild(input);
+    }
+
+    var deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "Delete";
+    deleteBtn.onclick = function() {
+        table.deleteRow(newRow.rowIndex);
+    };
+
+    cells.push(newRow.insertCell(6))
+    
+    cells[6].appendChild(deleteBtn);
+}
+</script>
+
+</body>
+</html>
